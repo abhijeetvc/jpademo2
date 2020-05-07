@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -26,9 +27,23 @@ public class EmployeeController {
         return list;
     }
 
+//    @GetMapping(value="/employee/{id}")
+//    public Optional<Employee> getEmployee1(@PathVariable Long id){
+//        Optional<Employee> emp=employeeRepository.findById(id);
+//        return emp;
+//    }
+
     @GetMapping(value="/employee/{id}")
-    public Optional<Employee> getEmployee1(@PathVariable Long id){
-        Optional<Employee> emp=employeeRepository.findById(id);
+    public List<Map<String,Object>> getEmployee1(@PathVariable Long id){
+        List<Map<String,Object>> emp=employeeRepository.findByEmployeeId(id);
+        return emp;
+    }
+
+    @GetMapping(value="/employee/{id}/{firstName}/{lastName}")
+    public Optional<Employee> getEmployee1(@PathVariable Long id,
+                                           @PathVariable String firstName,
+                                           @PathVariable String lastName){
+        Optional<Employee> emp=employeeRepository.findByIdAndFirstNameAndLastName(id,firstName,lastName);
         return emp;
     }
 }

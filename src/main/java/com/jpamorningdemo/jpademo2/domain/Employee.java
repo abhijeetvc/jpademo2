@@ -21,4 +21,8 @@ public class Employee {
     private String city;
     private String address;
 
+    @ManyToOne
+    @JoinColumn(name = "dept_id")
+    private Department department;
+
 }
