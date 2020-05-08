@@ -1,5 +1,6 @@
 package com.jpamorningdemo.jpademo2.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Generated;
@@ -23,6 +24,7 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "dept_id")
+    @JsonBackReference
     private Department department;
 
 }
